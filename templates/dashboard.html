@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>📊 Personal Dashboard</h1>
+            <div class="header-actions">
+                <span id="last-updated" class="last-updated">Loading...</span>
+                <button id="refresh-btn" class="btn btn-primary">↻ Refresh</button>
+                <button id="auth-btn" class="btn btn-secondary">🔐 Authenticate</button>
+            </div>
+        </header>
+
+        <!-- Stats Overview -->
+        <div class="stats-grid" id="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="stat-todos">-</div>
+                <div class="stat-label">Total To-Dos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-high-priority">-</div>
+                <div class="stat-label">High Priority</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-events">-</div>
+                <div class="stat-label">Upcoming Events</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-emails">-</div>
+                <div class="stat-label">Flagged Emails</div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <!-- Work To-Dos Section -->
+            <section class="panel">
+                <h2>🎯 Work To-Dos</h2>
+                <div class="filter-tabs">
+                    <button class="tab-btn active" data-filter="all">All</button>
+                    <button class="tab-btn" data-filter="email">Emails</button>
+                    <button class="tab-btn" data-filter="mention">Mentions</button>
+                    <button class="tab-btn" data-filter="todo">Tasks</button>
+                </div>
+                <div id="todos-container" class="items-container">
+                    <div class="loading">Loading work items...</div>
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section class="panel">
+                <h2>📅 Upcoming Events</h2>
+                <div class="filter-tabs">
+                    <button class="tab-btn active" data-filter="all">All</button>
+                    <button class="tab-btn" data-filter="calendar">Calendar</button>
+                    <button class="tab-btn" data-filter="event">Special Events</button>
+                </div>
+                <div id="events-container" class="items-container">
+                    <div class="loading">Loading events...</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Authentication Modal -->
+        <div id="auth-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>🔐 Authenticate Services</h2>
+                <p>Connect your accounts to start using the dashboard:</p>
+                <div class="auth-grid">
+                    <div class="auth-item">
+                        <h3>Google (Gmail, Calendar, Docs)</h3>
+                        <div class="auth-status" id="auth-status-google">
+                            <span class="status-indicator">⚪</span>
+                            <span>Not connected</span>
+                        </div>
+                        <a href="/auth/google" class="btn btn-primary">Connect Google</a>
+                    </div>
+                    <div class="auth-item">
+                        <h3>Microsoft (Outlook, Calendar)</h3>
+                        <div class="auth-status" id="auth-status-microsoft">
+                            <span class="status-indicator">⚪</span>
+                            <span>Not connected</span>
+                        </div>
+                        <a href="/auth/microsoft" class="btn btn-primary">Connect Microsoft</a>
+                    </div>
+                    <div class="auth-item">
+                        <h3>Slack</h3>
+                        <div class="auth-status" id="auth-status-slack">
+                            <span class="status-indicator">⚪</span>
+                            <span>Not connected</span>
+                        </div>
+                        <a href="/auth/slack" class="btn btn-primary">Connect Slack</a>
+                    </div>
+                    <div class="auth-item">
+                        <h3>Signal</h3>
+                        <div class="auth-status" id="auth-status-signal">
+                            <span class="status-indicator">⚪</span>
+                            <span>Not configured</span>
+                        </div>
+                        <p class="small-text">Requires signal-cli setup (see docs)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
